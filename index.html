@@ -4,8 +4,8 @@
     <title>JanniCollections</title>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="description" content="Colo Shop Template" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta janni collections="description" content="Colo Shop Template" />
+    <meta janni collections="viewport" content="width=device-width, initial-scale=1" />
     <link
       rel="stylesheet"
       type="text/css"
@@ -39,6 +39,240 @@
         height: 100%;
         margin-top: -3%;
       }
+/**
+ * 01/28/2016
+ * This pen is years old, and watching at the code after all
+ * those years made me fall from my chair, so I:
+ * - changed all IDs to classes
+ * - converted all units to pixels and em units
+ * - changed all global elements to classes or children of
+ *   .login
+ * - cleaned the syntax to be more consistent
+ * - added a lot of spaces that I so hard tried to avoid
+ *   a few years ago
+ *   (because it's cool to not use them)
+ * - and probably something else that I can't remember anymore
+ *
+ * I sticked to the same philosophy, meaning:
+ * - the design is almost the same
+ * - only pure HTML and CSS
+ * - no frameworks, preprocessors or resets
+ */
+
+/* 'Open Sans' font from Google Fonts */
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
+
+
+
+.login {
+  margin: 16px auto;
+  font-size: 16px;
+}
+
+/* Reset top and bottom margins from certain elements */
+.login-header,
+.login p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* The triangle form is achieved by a CSS hack */
+/*.login-triangle {
+  width: 0;
+  margin-right: auto;
+  margin-left: auto;
+  border: 12px solid transparent;
+  border-bottom-color: #28d;
+}
+*/
+.login-header {
+  background:  #f26d7d;
+  padding: 20px;
+  font-size: 1.4em;
+  font-weight: normal;
+  text-align: center;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.login-container {
+  background: #ebebeb;
+  padding: 12px;
+}
+
+/* Every row inside .login-container is defined with p tags */
+.login p {
+  padding: 12px;
+}
+
+.login input {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  border-width: 1px;
+  border-style: solid;
+  padding: 16px;
+  outline: 0;
+  font-family: inherit;
+  font-size: 0.95em;
+}
+
+.login input[type="email"],
+.login input[type="password"] {
+  background: #fff;
+  border-color: #bbb;
+  color: #555;
+}
+
+/* Text fields' focus effect */
+.login input[type="email"]:focus,
+.login input[type="password"]:focus {
+  border-color: #888;
+}
+
+.login input[type="submit"] {
+  background: #f26d7d;
+  border-color: transparent;
+  color: #fff;
+  cursor: pointer;
+}
+
+.login input[type="submit"]:hover {
+  background: #f26d7d;
+}
+
+/* Buttons' focus effect */
+.login input[type="submit"]:focus {
+  border-color:  #f26d7d;
+}
+
+label {
+    display: inline-block;
+    margin-bottom: 0 !important;
+}
+
+
+
+
+
+
+span[data-acts-as-select] {
+  min-width: 350px;
+  height: 46px;
+  display: inline-block;
+  position: relative;
+  border: 1px solid lightgray;
+  background-color: white;
+  font-family: Georgia;
+}
+span[data-acts-as-select] > span {
+  display: block;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+span[data-acts-as-select]:after {
+  position: absolute;
+  content: '▾';
+  display: block;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 18px;
+  line-height: 46px;
+}
+span[data-acts-as-select] label {
+  display: none;
+  white-space: nowrap;
+  line-height: 46px;
+  padding: 0 15px;
+  cursor: pointer;
+}
+
+span[data-acts-as-select] label:hover {
+  background-color: lightblue;
+}
+span[data-acts-as-select] input[type=radio] {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+}
+span[data-acts-as-select] input[type=radio]:checked + label {
+  display: block;
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+}
+span[data-acts-as-select] input[type=radio]:checked + label:hover {
+  background-color: transparent;
+}
+span[data-acts-as-select]:hover label {
+  display: block;
+}
+
+#span-wrap:first-child  {
+  background-color: white; 
+}
+
+
+.modalDialog {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 99999;
+    opacity:0;
+    -webkit-transition: opacity 100ms ease-in;
+    -moz-transition: opacity 100ms ease-in;
+    transition: opacity 100ms ease-in;
+    pointer-events: none;
+}
+
+.modalDialog:target {
+    opacity: 1;
+    pointer-events: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalDialog > div {
+    max-width: 800px;
+    width: 85%;
+    position: relative;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 3px;
+    background: #fff;
+}
+.close {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f26d7d;
+    color: #fff;
+    line-height: 25px;
+    position: absolute;
+    right: -12px;
+    text-align: center;
+    top: -10px;
+    width: 34px;
+    height: 34px;
+    text-decoration: none;
+    font-weight: bold;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    -moz-box-shadow: 1px 1px 3px #000;
+    -webkit-box-shadow: 1px 1px 3px #000;
+    box-shadow: 1px 1px 3px #000;
+    padding-top: 5px;
+}
+.close:hover {
+    background: #fa3f6f;
+}
+
     </style>
   </head>
 
@@ -155,7 +389,7 @@
                 style="background-image: url(pictures/s1.jpg);"
               >
                 <div class="banner_category">
-                  <h3 style="margin-top: 5%; text-align: center;">shoe's</h3>
+                  <h3 style="margin-top: 5%; text-align: center;">shoe</h3>
                 </div>
               </div>
             </div>
@@ -206,7 +440,7 @@
                     class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center"
                     data-filter=".shoe"
                   >
-                    shoe's
+                    shoe
                   </li>
                   <li
                     class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center"
@@ -239,17 +473,1891 @@
                     </div>
                     <div class="product_info">
                       <h6 class="product_name">
-                        <a href="#shop">sneakers (colorful white)</a>
+                        <a href="#shop">janni collections</a>
                       </h6>
                       <div class="product_price">
-                        price<span>discount price</span>
+                        Discount<span>20%</span>
                       </div>
                     </div>
                   </div>
                   <div class="red_button add_to_cart_button">
-                    <a href="#">add to cart</a>
+                   <a href="#openModal-about">add to cart</a>
                   </div>
                 </div>
+
+
+
+
+
+
+
+
+                <div class="product-item shoe">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pictures/1.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+
+
+
+
+
+
+                
+                <div class="product-item shoe">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pictures/2.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+
+
+
+
+
+
+
+                
+                <div class="product-item shoe">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pictures/3.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+
+
+
+
+
+                
+                <div class="product-item shoe">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pictures/4.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+
+
+
+
+
+
+                
+                <div class="product-item shoe">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pictures/5.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+
+
+
+
+
+                
+                <div class="product-item shoe">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pictures/6.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+
+
+
+
+
+                
+                <div class="product-item shoe">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pictures/6.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+
+
+
+
+                
+                <div class="product-item shoe">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pictures/7.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+
+
+
+
+
+                
+                <div class="product-item shoe">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pictures/8.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+
+
+
+
+
+                
+                <div class="product-item shoe">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pictures/9.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+
+
+
+
+
+
+                
+                <div class="product-item shoe">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pictures/10.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+
+
+
+
+
+
+
+                
+                <div class="product-item shoe">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pictures/a.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+
+
+
+
+
+
+                
+                <div class="product-item shoe">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pictures/b.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+
+
+
+
+
+
+                
+                <div class="product-item shoe">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pictures/c.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+
+
+
+
+
+                
+                <div class="product-item shoe">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pictures/d.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+
+
+
+
+
+                
+                <div class="product-item shoe">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pictures/e.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+
+
+
+
+
+                
+                <div class="product-item shoe">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pictures/f.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+
+
+
+
+
+                
+                <div class="product-item shoe">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pictures/g.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+
+
+
+
+
+                
+                <div class="product-item shoe">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pictures/h.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+
+
+
+
+
+
+
+
+
+                
+                <div class="product-item shoe">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pictures/i.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+
+
+
+
+
+
+                
+                <div class="product-item shoe">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pictures/j.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+                
+                <div class="product-item shoe">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pictures/k.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+                
+                <div class="product-item shoe">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pictures/l.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+                <div class="product-item shoe">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pictures/m.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+                <div class="product-item shoe">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pictures/n.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+                <div class="product-item shoe">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pictures/o.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+                <div class="product-item shoe">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pictures/p.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+                <div class="product-item shoe">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pictures/q.jpg"alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+                <div class="product-item shoe">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pictures/r.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+                <div class="product-item shoe">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pictures/s.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+                <div class="product-item shoe">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pictures/t.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+                <div class="product-item shoe">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pictures/u.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+                <div class="product-item shoe">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pictures/v.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+                <div class="product-item shoe">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pictures/w.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+                <div class="product-item shoe">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pictures/x.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+
+
+
+
+
+
+
+                <div class="product-item women">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pics/1.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+
+
+
+
+
+
+
+
+
+                <div class="product-item women">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pics/2.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <div class="product-item women">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pics/3.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+                <div class="product-item women">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pics/4.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <div class="product-item women">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pics/5.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <div class="product-item women">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pics/6.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                <div class="product-item women">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pics/7.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <div class="product-item women">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pics/a.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+
+
+
+
+
+
+
+
+
+                
+                <div class="product-item shoe">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pics/f.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+                
+
+                
+                <div class="product-item shoe">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pics/g.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+                
+
+
+
+                
+                <div class="product-item shoe">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pics/h.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+                
+
+
+
+
+                
+                <div class="product-item shoe">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pics/h.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+                
+
+
+
+                
+                <div class="product-item shoe">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pics/i.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+                
+
+
+
+                
+                <div class="product-item shoe">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pics/j.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+
+                <div class="product-item women">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pics/v.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+                
+
+
+
+                
+                <div class="product-item shoe">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pics/k.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+                
+
+
+
+
+
+
+
+                <div class="product-item women">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pics/b.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                <div class="product-item women">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pics/c.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+                
+                <div class="product-item shoe">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pictures/y.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+                <div class="product-item shoe">
+                  <div class="product discount product_filter">
+                    <div class="product_image">
+                      <img src="pictures/pictures/z.jpg" alt="" />
+                    </div>
+                    <div class="favorite favorite_left"></div>
+                    <div
+                      class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                    >
+                      <span>sale</span>
+                    </div>
+                    <div class="product_info">
+                      <h6 class="product_name">
+                        <a href="#shop">janni collections</a>
+                      </h6>
+                      <div class="product_price">
+                        Discount<span>20%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="red_button add_to_cart_button">
+                   <a href="#openModal-about">add to cart</a>
+                  </div>
+                </div>
+                
 
                 <!-- Product 2 -->
 
@@ -266,15 +2374,15 @@
                     </div>
                     <div class="product_info">
                       <h6 class="product_name">
-                        <a href="#shop">sneakers (colorful white)</a>
+                        <a href="#shop">janni collections</a>
                       </h6>
                       <div class="product_price">
-                        price<span>discount price</span>
+                        Discount<span>20%</span>
                       </div>
                     </div>
                   </div>
                   <div class="red_button add_to_cart_button">
-                    <a href="#">add to cart</a>
+                   <a href="#openModal-about">add to cart</a>
                   </div>
                 </div>
 
@@ -293,15 +2401,15 @@
                     </div>
                     <div class="product_info">
                       <h6 class="product_name">
-                        <a href="#shop">sneakers (colorful white)</a>
+                        <a href="#shop">janni collections</a>
                       </h6>
                       <div class="product_price">
-                        price<span>discount price</span>
+                        Discount<span>20%</span>
                       </div>
                     </div>
                   </div>
                   <div class="red_button add_to_cart_button">
-                    <a href="#">add to cart</a>
+                   <a href="#openModal-about">add to cart</a>
                   </div>
                 </div>
 
@@ -318,15 +2426,15 @@
                     </div>
                     <div class="product_info">
                       <h6 class="product_name">
-                        <a href="#shop">sneakers (colorful white)</a>
+                        <a href="#shop">janni collections</a>
                       </h6>
                       <div class="product_price">
-                        price<span>discount price</span>
+                        Discount<span>20%</span>
                       </div>
                     </div>
                   </div>
                   <div class="red_button add_to_cart_button">
-                    <a href="#">add to cart</a>
+                   <a href="#openModal-about">add to cart</a>
                   </div>
                 </div>
 
@@ -345,15 +2453,15 @@
                     </div>
                     <div class="product_info">
                       <h6 class="product_name">
-                        <a href="#shop">sneakers (colorful white)</a>
+                        <a href="#shop">janni collections</a>
                       </h6>
                       <div class="product_price">
-                        price<span>discount price</span>
+                        Discount<span>20%</span>
                       </div>
                     </div>
                   </div>
                   <div class="red_button add_to_cart_button">
-                    <a href="#">add to cart</a>
+                   <a href="#openModal-about">add to cart</a>
                   </div>
                 </div>
 
@@ -372,15 +2480,15 @@
                     </div>
                     <div class="product_info">
                       <h6 class="product_name">
-                        <a href="#shop">sneakers (colorful white)</a>
+                        <a href="#shop">janni collections</a>
                       </h6>
                       <div class="product_price">
-                        price<span>discount price</span>
+                        Discount<span>20%</span>
                       </div>
                     </div>
                   </div>
                   <div class="red_button add_to_cart_button">
-                    <a href="#">add to cart</a>
+                   <a href="#openModal-about">add to cart</a>
                   </div>
                 </div>
 
@@ -398,15 +2506,15 @@
                     </div>
                     <div class="product_info">
                       <h6 class="product_name">
-                        <a href="#shop">sneakers (colorful white)</a>
+                        <a href="#shop">janni collections</a>
                       </h6>
                       <div class="product_price">
-                        price<span>discount price</span>
+                        Discount<span>20%</span>
                       </div>
                     </div>
                   </div>
                   <div class="red_button add_to_cart_button">
-                    <a href="#">add to cart</a>
+                   <a href="#openModal-about">add to cart</a>
                   </div>
                 </div>
 
@@ -423,15 +2531,15 @@
                     </div>
                     <div class="product_info">
                       <h6 class="product_name">
-                        <a href="#shop">sneakers (colorful white)</a>
+                        <a href="#shop">janni collections</a>
                       </h6>
                       <div class="product_price">
-                        price<span>discount price</span>
+                        Discount<span>20%</span>
                       </div>
                     </div>
                   </div>
                   <div class="red_button add_to_cart_button">
-                    <a href="#">add to cart</a>
+                   <a href="#openModal-about">add to cart</a>
                   </div>
                 </div>
 
@@ -451,15 +2559,15 @@
                     </div>
                     <div class="product_info">
                       <h6 class="product_name">
-                        <a href="#shop">sneakers (colorful white)</a>
+                        <a href="#shop">janni collections</a>
                       </h6>
                       <div class="product_price">
-                        price<span>discount price</span>
+                        Discount<span>20%</span>
                       </div>
                     </div>
                   </div>
                   <div class="red_button add_to_cart_button">
-                    <a href="#">add to cart</a>
+                   <a href="#openModal-about">add to cart</a>
                   </div>
                 </div>
 
@@ -476,15 +2584,15 @@
                     </div>
                     <div class="product_info">
                       <h6 class="product_name">
-                        <a href="#shop">sneakers (colorful white)</a>
+                        <a href="#shop">janni collections</a>
                       </h6>
                       <div class="product_price">
-                        price<span>discount price</span>
+                        Discount<span>20%</span>
                       </div>
                     </div>
                   </div>
                   <div class="red_button add_to_cart_button">
-                    <a href="#">add to cart</a>
+                   <a href="#openModal-about">add to cart</a>
                   </div>
                 </div>
 
@@ -502,15 +2610,15 @@
                     </div>
                     <div class="product_info">
                       <h6 class="product_name">
-                        <a href="#shop">sneakers (colorful white)</a>
+                        <a href="#shop">janni collections</a>
                       </h6>
                       <div class="product_price">
-                        price<span>discount price</span>
+                        Discount<span>20%</span>
                       </div>
                     </div>
                   </div>
                   <div class="red_button add_to_cart_button">
-                    <a href="#">add to cart</a>
+                   <a href="#openModal-about">add to cart</a>
                   </div>
                 </div>
 
@@ -527,15 +2635,15 @@
                     </div>
                     <div class="product_info">
                       <h6 class="product_name">
-                        <a href="#shop">sneakers (colorful white)</a>
+                        <a href="#shop">janni collections</a>
                       </h6>
                       <div class="product_price">
-                        price<span>discount price</span>
+                        Discount<span>20%</span>
                       </div>
                     </div>
                   </div>
                   <div class="red_button add_to_cart_button">
-                    <a href="#">add to cart</a>
+                   <a href="#openModal-about">add to cart</a>
                   </div>
                 </div>
 
@@ -552,18 +2660,98 @@
                     </div>
                     <div class="product_info">
                       <h6 class="product_name">
-                        <a href="#shop">sneakers (colorful white)</a>
+                        <a href="#shop">janni collections</a>
                       </h6>
                       <div class="product_price">
-                        price<span>discount price</span>
+                        Discount<span>20%</span>
                       </div>
                     </div>
                   </div>
                   <div class="red_button add_to_cart_button">
-                    <a href="#">add to cart</a>
+                   <a href="#openModal-about">add to cart</a>
                   </div>
                 </div>
                 <!-- Product 9 -->
+
+                
+                <div class="owl-item product_slider_item">
+                  <div class="product-item men">
+                    <div class="product">
+                      <div class="product_image">
+                        <img src="pictures/pics/x.jpg" alt="" />
+                      </div>
+                      <div
+                        class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                      >
+                        <span>sale</span>
+                      </div>
+                      <div class="favorite favorite_left"></div>
+                      <div class="product_info">
+                        <h6 class="product_name">
+                          <a href="#shop"
+                            >janni collections
+                            </a
+                          >
+                        </h6>
+                        <div class="product_price">Discount</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+                
+                <div class="owl-item product_slider_item">
+                  <div class="product-item men">
+                    <div class="product">
+                      <div class="product_image">
+                        <img src="pictures/pics/y.jpg" alt="" />
+                      </div>
+                      <div
+                        class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                      >
+                        <span>sale</span>
+                      </div>
+                      <div class="favorite favorite_left"></div>
+                      <div class="product_info">
+                        <h6 class="product_name">
+                          <a href="#shop"
+                            >janni collections
+                            </a
+                          >
+                        </h6>
+                        <div class="product_price">Discount</div>  
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+                
+                <div class="owl-item product_slider_item">
+                  <div class="product-item men">
+                    <div class="product">
+                      <div class="product_image">
+                        <img src="pictures/pics/z.jpg" alt="" />
+                      </div>
+                      <div
+                        class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                      >
+                        <span>sale</span>
+                      </div>
+                      <div class="favorite favorite_left"></div>
+                      <div class="product_info">
+                        <h6 class="product_name">
+                          <a href="#shop"
+                            >janni collections
+                            </a
+                          >
+                        </h6>
+                        <div class="product_price">Discount</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
                 <div class="product-item shoe">
                   <div class="product discount product_filter">
@@ -578,15 +2766,15 @@
                     </div>
                     <div class="product_info">
                       <h6 class="product_name">
-                        <a href="#shop">sneakers (colorful white)</a>
+                        <a href="#shop">janni collections</a>
                       </h6>
                       <div class="product_price">
-                        price<span>discount price</span>
+                        Discount<span>20%</span>
                       </div>
                     </div>
                   </div>
                   <div class="red_button add_to_cart_button">
-                    <a href="#">add to cart</a>
+                   <a href="#openModal-about">add to cart</a>
                   </div>
                 </div>
 
@@ -605,15 +2793,15 @@
                     </div>
                     <div class="product_info">
                       <h6 class="product_name">
-                        <a href="#shop">sneakers (colorful white)</a>
+                        <a href="#shop">janni collections</a>
                       </h6>
                       <div class="product_price">
-                        price<span>discount price</span>
+                        Discount<span>20%</span>
                       </div>
                     </div>
                   </div>
                   <div class="red_button add_to_cart_button">
-                    <a href="#">add to cart</a>
+                   <a href="#openModal-about">add to cart</a>
                   </div>
                 </div>
 
@@ -630,15 +2818,15 @@
                     </div>
                     <div class="product_info">
                       <h6 class="product_name">
-                        <a href="#shop">sneakers (colorful white)</a>
+                        <a href="#shop">janni collections</a>
                       </h6>
                       <div class="product_price">
-                        price<span>discount price</span>
+                        Discount<span>20%</span>
                       </div>
                     </div>
                   </div>
                   <div class="red_button add_to_cart_button">
-                    <a href="#">add to cart</a>
+                   <a href="#openModal-about">add to cart</a>
                   </div>
                 </div>
 
@@ -655,15 +2843,15 @@
                     </div>
                     <div class="product_info">
                       <h6 class="product_name">
-                        <a href="#shop">sneakers (colorful white)</a>
+                        <a href="#shop">janni collections</a>
                       </h6>
                       <div class="product_price">
-                        price<span>discount price</span>
+                        Discount<span>20%</span>
                       </div>
                     </div>
                   </div>
                   <div class="red_button add_to_cart_button">
-                    <a href="#">add to cart</a>
+                   <a href="#openModal-about">add to cart</a>
                   </div>
                 </div>
 
@@ -680,15 +2868,15 @@
                     </div>
                     <div class="product_info">
                       <h6 class="product_name">
-                        <a href="#shop">sneakers (colorful white)</a>
+                        <a href="#shop">janni collections</a>
                       </h6>
                       <div class="product_price">
-                        price<span>discount price</span>
+                        Discount<span>20%</span>
                       </div>
                     </div>
                   </div>
                   <div class="red_button add_to_cart_button">
-                    <a href="#">add to cart</a>
+                   <a href="#openModal-about">add to cart</a>
                   </div>
                 </div>
 
@@ -705,22 +2893,338 @@
                     </div>
                     <div class="product_info">
                       <h6 class="product_name">
-                        <a href="#shop">sneakers (colorful white)</a>
+                        <a href="#shop">janni collections</a>
                       </h6>
                       <div class="product_price">
-                        price<span>discount price</span>
+                        Discount<span>20%</span>
                       </div>
                     </div>
                   </div>
                   <div class="red_button add_to_cart_button">
-                    <a href="#">add to cart</a>
+                   <a href="#openModal-about">add to cart</a>
                   </div>
                 </div>
+
+
+
+
+
+
+
+
+                <div class="owl-item product_slider_item">
+                  <div class="product-item men">
+                    <div class="product">
+                      <div class="product_image">
+                        <img src="pictures/pics/l.jpg" alt="" />
+                      </div>
+                      <div
+                        class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                      >
+                        <span>sale</span>
+                      </div>
+                      <div class="favorite favorite_left"></div>
+                      <div class="product_info">
+                        <h6 class="product_name">
+                          <a href="#shop"
+                            >janni collections
+                            </a
+                          >
+                        </h6>
+                        <div class="product_price">Discount</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+                <div class="owl-item product_slider_item">
+                  <div class="product-item men">
+                    <div class="product">
+                      <div class="product_image">
+                        <img src="pictures/pics/m.jpg" alt="" />
+                      </div>
+                      <div
+                        class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                      >
+                        <span>sale</span>
+                      </div>
+                      <div class="favorite favorite_left"></div>
+                      <div class="product_info">
+                        <h6 class="product_name">
+                          <a href="#shop"
+                            >janni collections
+                            </a
+                          >
+                        </h6>
+                        <div class="product_price">Discount</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+                <div class="owl-item product_slider_item">
+                  <div class="product-item men">
+                    <div class="product">
+                      <div class="product_image">
+                        <img src="pictures/pics/n.jpg" alt="" />
+                      </div>
+                      <div
+                        class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                      >
+                        <span>sale</span>
+                      </div>
+                      <div class="favorite favorite_left"></div>
+                      <div class="product_info">
+                        <h6 class="product_name">
+                          <a href="#shop"
+                            >janni collections
+                            </a
+                          >
+                        </h6>
+                        <div class="product_price">Discount</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+                <div class="owl-item product_slider_item">
+                  <div class="product-item men">
+                    <div class="product">
+                      <div class="product_image">
+                        <img src="pictures/pics/o.jpg" alt="" />
+                      </div>
+                      <div
+                        class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                      >
+                        <span>sale</span>
+                      </div>
+                      <div class="favorite favorite_left"></div>
+                      <div class="product_info">
+                        <h6 class="product_name">
+                          <a href="#shop"
+                            >janni collections
+                            </a
+                          >
+                        </h6>
+                        <div class="product_price">Discount</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+                <div class="owl-item product_slider_item">
+                  <div class="product-item men">
+                    <div class="product">
+                      <div class="product_image">
+                        <img src="pictures/pics/p.jpg" alt="" />
+                      </div>
+                      <div
+                        class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                      >
+                        <span>sale</span>
+                      </div>
+                      <div class="favorite favorite_left"></div>
+                      <div class="product_info">
+                        <h6 class="product_name">
+                          <a href="#shop"
+                            >janni collections
+                            </a
+                          >
+                        </h6>
+                        <div class="product_price">Discount</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+
+                <div class="owl-item product_slider_item">
+                  <div class="product-item men">
+                    <div class="product">
+                      <div class="product_image">
+                        <img src="pictures/pics/q.jpg" alt="" />
+                      </div>
+                      <div
+                        class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                      >
+                        <span>sale</span>
+                      </div>
+                      <div class="favorite favorite_left"></div>
+                      <div class="product_info">
+                        <h6 class="product_name">
+                          <a href="#shop"
+                            >janni collections
+                            </a
+                          >
+                        </h6>
+                        <div class="product_price">Discount</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+
+                <div class="owl-item product_slider_item">
+                  <div class="product-item men">
+                    <div class="product">
+                      <div class="product_image">
+                        <img src="pictures/pics/r.jpg" alt="" />
+                      </div>
+                      <div
+                        class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                      >
+                        <span>sale</span>
+                      </div>
+                      <div class="favorite favorite_left"></div>
+                      <div class="product_info">
+                        <h6 class="product_name">
+                          <a href="#shop"
+                            >janni collections
+                            </a
+                          >
+                        </h6>
+                        <div class="product_price">Discount</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+
+                <div class="owl-item product_slider_item">
+                  <div class="product-item men">
+                    <div class="product">
+                      <div class="product_image">
+                        <img src="pictures/pics/s.jpg" alt="" />
+                      </div>
+                      <div
+                        class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                      >
+                        <span>sale</span>
+                      </div>
+                      <div class="favorite favorite_left"></div>
+                      <div class="product_info">
+                        <h6 class="product_name">
+                          <a href="#shop"
+                            >janni collections
+                            </a
+                          >
+                        </h6>
+                        <div class="product_price">Discount</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+
+                <div class="owl-item product_slider_item">
+                  <div class="product-item men">
+                    <div class="product">
+                      <div class="product_image">
+                        <img src="pictures/pics/t.jpg" alt="" />
+                      </div>
+                      <div
+                        class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                      >
+                        <span>sale</span>
+                      </div>
+                      <div class="favorite favorite_left"></div>
+                      <div class="product_info">
+                        <h6 class="product_name">
+                          <a href="#shop"
+                            >janni collections
+                            </a
+                          >
+                        </h6>
+                        <div class="product_price">Discount</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+                <div class="owl-item product_slider_item">
+                  <div class="product-item men">
+                    <div class="product">
+                      <div class="product_image">
+                        <img src="pictures/pics/u.jpg" alt="" />
+                      </div>
+                      <div
+                        class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                      >
+                        <span>sale</span>
+                      </div>
+                      <div class="favorite favorite_left"></div>
+                      <div class="product_info">
+                        <h6 class="product_name">
+                          <a href="#shop"
+                            >janni collections
+                            </a
+                          >
+                        </h6>
+                        <div class="product_price">Discount</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+                <div class="owl-item product_slider_item">
+                  <div class="product-item men">
+                    <div class="product">
+                      <div class="product_image">
+                        <img src="pictures/pics/w.jpg" alt="" />
+                      </div>
+                      <div
+                        class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+                      >
+                        <span>sale</span>
+                      </div>
+                      <div class="favorite favorite_left"></div>
+                      <div class="product_info">
+                        <h6 class="product_name">
+                          <a href="#shop"
+                            >janni collections
+                            </a
+                          >
+                        </h6>
+                        <div class="product_price">Discount</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
 
                 <div class="product-item shoe">
                   <div class="product discount product_filter">
                     <div class="product_image">
-                      <img src="pictures/s16.jpg" alt="" />
+                      <img src="pictures/pics/l.jpg" alt="" />
                     </div>
                     <div class="favorite favorite_left"></div>
                     <div
@@ -730,15 +3234,15 @@
                     </div>
                     <div class="product_info">
                       <h6 class="product_name">
-                        <a href="#shop">sneakers (colorful white)</a>
+                        <a href="#shop">janni collections</a>
                       </h6>
                       <div class="product_price">
-                        price<span>discount price</span>
+                        Discount<span>20%</span>
                       </div>
                     </div>
                   </div>
                   <div class="red_button add_to_cart_button">
-                    <a href="#">add to cart</a>
+                   <a href="#openModal-about">add to cart</a>
                   </div>
                 </div>
 
@@ -755,15 +3259,15 @@
                     </div>
                     <div class="product_info">
                       <h6 class="product_name">
-                        <a href="#shop">sneakers (colorful white)</a>
+                        <a href="#shop">janni collections</a>
                       </h6>
                       <div class="product_price">
-                        price<span>discount price</span>
+                        Discount<span>20%</span>
                       </div>
                     </div>
                   </div>
                   <div class="red_button add_to_cart_button">
-                    <a href="#">add to cart</a>
+                   <a href="#openModal-about">add to cart</a>
                   </div>
                 </div>
 
@@ -780,15 +3284,15 @@
                     </div>
                     <div class="product_info">
                       <h6 class="product_name">
-                        <a href="#shop">sneakers (colorful white)</a>
+                        <a href="#shop">janni collections</a>
                       </h6>
                       <div class="product_price">
-                        price<span>discount price</span>
+                        Discount<span>20%</span>
                       </div>
                     </div>
                   </div>
                   <div class="red_button add_to_cart_button">
-                    <a href="#">add to cart</a>
+                   <a href="#openModal-about">add to cart</a>
                   </div>
                 </div>
 
@@ -805,15 +3309,15 @@
                     </div>
                     <div class="product_info">
                       <h6 class="product_name">
-                        <a href="#shop">sneakers (colorful white)</a>
+                        <a href="#shop">janni collections</a>
                       </h6>
                       <div class="product_price">
-                        price<span>discount price</span>
+                        Discount<span>20%</span>
                       </div>
                     </div>
                   </div>
                   <div class="red_button add_to_cart_button">
-                    <a href="#">add to cart</a>
+                   <a href="#openModal-about">add to cart</a>
                   </div>
                 </div>
 
@@ -830,15 +3334,15 @@
                     </div>
                     <div class="product_info">
                       <h6 class="product_name">
-                        <a href="#shop">sneakers (colorful white)</a>
+                        <a href="#shop">janni collections</a>
                       </h6>
                       <div class="product_price">
-                        price<span>discount price</span>
+                        Discount<span>20%</span>
                       </div>
                     </div>
                   </div>
                   <div class="red_button add_to_cart_button">
-                    <a href="#">add to cart</a>
+                   <a href="#openModal-about">add to cart</a>
                   </div>
                 </div>
 
@@ -855,15 +3359,15 @@
                     </div>
                     <div class="product_info">
                       <h6 class="product_name">
-                        <a href="#shop">sneakers (colorful white)</a>
+                        <a href="#shop">janni collections</a>
                       </h6>
                       <div class="product_price">
-                        price<span>discount price</span>
+                        Discount<span>20%</span>
                       </div>
                     </div>
                   </div>
                   <div class="red_button add_to_cart_button">
-                    <a href="#">add to cart</a>
+                   <a href="#openModal-about">add to cart</a>
                   </div>
                 </div>
               </div>
@@ -956,11 +3460,11 @@
                         <div class="product_info">
                           <h6 class="product_name">
                             <a href="#shop"
-                              >name (Color)</a
+                              >janni collections</a
                             >
                           </h6>
                           <div class="product_price">
-                            price<span>discount price</span>
+                            Discount<span>20%</span>
                           </div>
                         </div>
                       </div>
@@ -984,11 +3488,11 @@
                         <div class="product_info">
                           <h6 class="product_name">
                             <a href="#shop"
-                              >name
-                              color</a
+                              >janni collections
+                              </a
                             >
                           </h6>
-                          <div class="product_price">$price</div>
+                          <div class="product_price">$Discount</div>
                         </div>
                       </div>
                     </div>
@@ -1006,10 +3510,10 @@
                         <div class="product_info">
                           <h6 class="product_name">
                             <a href="#shop"
-                              >name</a
+                              >janni collections</a
                             >
                           </h6>
-                          <div class="product_price">price</div>
+                          <div class="product_price">Discount</div>
                         </div>
                       </div>
                     </div>
@@ -1032,11 +3536,11 @@
                         <div class="product_info">
                           <h6 class="product_name">
                             <a href="#shop"
-                              >name
-                              color</a
+                              >janni collections
+                              </a
                             >
                           </h6>
-                          <div class="product_price">price</div>
+                          <div class="product_price">Discount</div>
                         </div>
                       </div>
                     </div>
@@ -1054,10 +3558,10 @@
                         <div class="product_info">
                           <h6 class="product_name">
                             <a href="#shop"
-                              >name</a
+                              >janni collections</a
                             >
                           </h6>
-                          <div class="product_price">price</div>
+                          <div class="product_price">Discount</div>
                         </div>
                       </div>
                     </div>
@@ -1080,11 +3584,11 @@
                         <div class="product_info">
                           <h6 class="product_name">
                             <a href="#shop"
-                              >name (Coor)</a
+                              >janni collections</a
                             >
                           </h6>
                           <div class="product_price">
-                            price<span>price</span>
+                            Discount<span>Discount</span>
                           </div>
                         </div>
                       </div>
@@ -1103,11 +3607,11 @@
                         <div class="product_info">
                           <h6 class="product_name">
                             <a href="#shop"
-                              >name
+                              >janni collections
                               type</a
                             >
                           </h6>
-                          <div class="product_price">price</div>
+                          <div class="product_price">Discount</div>
                         </div>
                       </div>
                     </div>
@@ -1151,11 +3655,11 @@
                         <div class="product_info">
                           <h6 class="product_name">
                             <a href="#shop"
-                              >name
-                              lable</a
+                              >janni collections
+                              </a
                             >
                           </h6>
-                          <div class="product_price">price</div>
+                          <div class="product_price">Discount</div>
                         </div>
                       </div>
                     </div>
@@ -1173,10 +3677,10 @@
                         <div class="product_info">
                           <h6 class="product_name">
                             <a href="#shop"
-                              >name</a
+                              >janni collections</a
                             >
                           </h6>
-                          <div class="product_price">price</div>
+                          <div class="product_price">Discount</div>
                         </div>
                       </div>
                     </div>
@@ -1200,6 +3704,60 @@
           </div>
         </div>
       </div>
+
+      
+
+
+      
+      <!--modals-->
+        <div id="openModal-about" class="modalDialog">
+            <div>
+               <a href="#close" title="Close" class="close">X</a>
+               <h2 style="text-align: center;">DO YOU LOVE THIS PRODUCT?  </h2>
+                <h2  style="text-align: center;">DROP THIS INFO</h2>
+
+
+
+               <div class="login">
+                <h2 class="login-header">Product Details</h2>
+                <form class="login-container">
+                    <p>
+                        <input type="number" placeholder="Phone Number">
+                    </p>
+                    <p>
+                        <input type="text" placeholder="Name of product">
+                    </p>
+                  <p>
+                        <span data-acts-as-select>
+          <span id="span-wrap">
+            <input type="radio" name="value" value="1" id="value1" checked/>
+            <label for="value1">Shoe</label>
+            <input type="radio" name="value" value="2" id="value2"/>
+            <label for="value2">Men</label>
+            <input type="radio" name="value" value="3" id="value3"/>
+            <label for="value3">Women</label>
+          </span>
+        </span>
+                    <p>
+                    
+                </form>
+
+                <p>
+                  <a href="#close"><button style="width: 100%;
+                   padding: 2%;
+                   background: #f26c7c;
+                   border: none;
+                   border-radius: 5px;
+                   font-size: 16px;
+                   color: white;">Send</button></a> 
+               </p>
+            </div>  
+              </div>
+         </div>
+
+
+
+
 
       <!-- Benefit -->
 
